@@ -1,85 +1,126 @@
 // shows the current date for the header
-var headingDate = moment().format("MMMM, Do YYYY");
+const headingDate = moment().format("MMMM, Do YYYY");
 $("#currentDay").text(headingDate);
-
 // the current date and time.
-var now = moment();
+const now = moment();
 // the current time in hour.
-var currentHour = now.hours()
+const currentHour = now.hours();
 
-// getting all textarea elements
-var textAreaElement = jQuery("textarea").find("> textarea");
-
-// assign multiple id's "the hour blocks"
-var hourBlocks = $('.time-block')
-
-
-// make sure the text stays on the page even after they refresh
-// user is able to delete the text and save it. clear function.
-// clearing the message block of text on click, exercise 9
 
 $(document).ready(function () {
 
-    function backgroundColor () {
-    
-        $('.time-block').each(function () {
-            var blockHour = parseInt($(this).attr("id").split("hour")[1]);
-            console.log(blockHour, currentHour)
-    
-            if (blockHour < currentHour) {
-                $(this).addClass('past');
-                $(this).removeClass('present');
-                $(this).removeClass('future');
-            } else if (blockHour === currentHour) {
-                $(this).addClass('present');
-                $(this).removeClass('past');
-                $(this).removeClass('future');
-            } else {
-                $(this).addClass('future');
-                $(this).removeClass('past');
-                $(this).removeClass('present');
-            }
-        })
-    }
+    backgroundColor()
 
     // stores the users text content for each time block when they press the save button
     $('.saveBtn').on('click', function () {
-        // it is overwriting the value each time the save button is clicked
-        localStorage.userInput = $('textarea[name="user-input"]').val();
+
+        // get value from localStorage getItem() 
+        var text = $(this).siblings(".description").val();
+        var date = $(this).parent().attr("id");
+
+        localStorage.setItem(date, text);
+        
     });
-    backgroundColor ()
+
+    $("#hour_9 .description").val(localStorage.getItem("hour_9"));
+    $("#hour_10 .description").val(localStorage.getItem("hour_10"));
+    $("#hour_11 .description").val(localStorage.getItem("hour_11"));
+    $("#hour_12 .description").val(localStorage.getItem("hour_12"));
+    $("#hour_1 .description").val(localStorage.getItem("hour_1"));
+    $("#hour_2 .description").val(localStorage.getItem("hour_2"));
+    $("#hour_3 .description").val(localStorage.getItem("hour_3"));
+    $("#hour_4 .description").val(localStorage.getItem("hour_4"));
+    $("#hour_5 .description").val(localStorage.getItem("hour_5"));
+    $("#hour_6 .description").val(localStorage.getItem("hour_6"));
+    $("#hour_7 .description").val(localStorage.getItem("hour_7"));
+    $("#hour_8 .description").val(localStorage.getItem("hour_8"));
 });
 
-// make a function where the scheduler recognizes the current time
-// assign the css color background to each column according to the current time
+// This function changes color according to the time of the day, green is assigned to the future, red is present and grey is past.
+function backgroundColor() {
 
-
-
-// Array.from(hourBlocks).forEach(row => {
-//     let rowIdString = row.id,
-//     rowHour;
-
-//     if (rowIdString) {
-//         rowHour = parseInt(rowIdString);
-//     }
-//     if (rowHour) {
-//         if (currentHour === rowHour) {
-//             addClass('present');
-//         } else if ((currentHour < rowHour) && (currentHour > rowHour - 6)) {
-//             addClass('past');
-//         } else if ((currentHour > rowHour) && (currentHour < rowHour + 6)) {
-//             addClass('future');
-//         }
-//     }
-// })
-
-// function backgroundColor () {
-
-//     if (currentHour) {
-//         $('.time-block').addClass('present');
-//     } else if ((currentHour < sixAM) && (currentHour > sixAM + 6)) {
-//         $('.time-block').addClass('future');
-//     } else if ((currentHour > sixAM) && (currentHour < sixAM - 6)) {
-//         $('.time-block').addClass('past');
-//     }
-// };
+    if (currentHour > 9) {
+        $("#hour_9").addClass("past");
+    } else if (currentHour >= 9 && currentHour < 10) {
+        $("#hour_9").addClass("present");
+    } else if (currentHour < 9) {
+        $("#hour_9").addClass("future");
+    }
+    if (currentHour > 10) {
+        $("#hour_10").addClass("past");
+    } else if (currentHour >= 10 && currentHour < 11) {
+        $("#hour_10").addClass("present");
+    } else if (currentHour < 10) {
+        $("#hour_10").addClass("future");
+    }
+    if (currentHour > 11) {
+        $("#hour_11").addClass("past");
+    } else if (currentHour >= 11 && currentHour < 12) {
+        $("#hour_11").addClass("present");
+    } else if (currentHour < 11) {
+        $("#hour_11").addClass("future");
+    }
+    if (currentHour > 12) {
+        $("#hour_12").addClass("past");
+    } else if (currentHour >= 12 && currentHour < 13) {
+        $("#hour_12").addClass("present");
+    } else if (currentHour < 12) {
+        $("#hour_12").addClass("future");
+    }
+    if (currentHour > 13) {
+        $("#hour_1").addClass("past");
+    } else if (currentHour >= 13 && currentHour < 14) {
+        $("#hour_1").addClass("present");
+    } else if (currentHour < 13) {
+        $("#hour_1").addClass("future");
+    }
+    if (currentHour > 14) {
+        $("#hour_2").addClass("past");
+    } else if (currentHour >= 14 && currentHour < 15) {
+        $("#hour_2").addClass("present");
+    } else if (currentHour < 14) {
+        $("#hour_2").addClass("future");
+    }
+    if (currentHour > 15) {
+        $("#hour_3").addClass("past");
+    } else if (currentHour >= 15 && currentHour < 16) {
+        $("#hour_3").addClass("present");
+    } else if (currentHour < 16) {
+        $("#hour_3").addClass("future");
+    }
+    if (currentHour > 16) {
+        $("#hour_4").addClass("past");
+    } else if (currentHour >= 16 && currentHour < 17) {
+        $("#hour_4").addClass("present");
+    } else if (currentHour < 17) {
+        $("#hour_4").addClass("future");
+    }
+    if (currentHour > 17) {
+        $("#hour_5").addClass("past");
+    } else if (currentHour >= 17 && currentHour < 18) {
+        $("#hour_5").addClass("present");
+    } else if (currentHour < 18) {
+        $("#hour_5").addClass("future");
+    }
+    if (currentHour > 18) {
+        $("#hour_6").addClass("past");
+    } else if (currentHour >= 18 && currentHour < 19) {
+        $("#hour_6").addClass("present");
+    } else if (currentHour < 19) {
+        $("#hour_6").addClass("future");
+    }
+    if (currentHour > 19) {
+        $("#hour_7").addClass("past");
+    } else if (currentHour >= 19 && currentHour < 20) {
+        $("#hour_7").addClass("present");
+    } else if (currentHour < 20) {
+        $("#hour_7").addClass("future");
+    }
+    if (currentHour > 20) {
+        $("#hour_8").addClass("past");
+    } else if (currentHour >= 20 && currentHour < 21) {
+        $("#hour_8").addClass("present");
+    } else if (currentHour < 21) {
+        $("#hour_8").addClass("future");
+    }
+}
