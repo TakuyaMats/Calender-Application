@@ -6,7 +6,6 @@ const now = moment();
 // the current time in hour.
 const currentHour = now.hours();
 
-
 $(document).ready(function () {
 
     backgroundColor()
@@ -19,9 +18,9 @@ $(document).ready(function () {
         var date = $(this).parent().attr("id");
 
         localStorage.setItem(date, text);
-        
-    });
 
+    });
+    // getting values from the local storage to save the user inputs when refreshed.
     $("#hour_9 .description").val(localStorage.getItem("hour_9"));
     $("#hour_10 .description").val(localStorage.getItem("hour_10"));
     $("#hour_11 .description").val(localStorage.getItem("hour_11"));
